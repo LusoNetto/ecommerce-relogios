@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD de Usuários</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>CRUD de Usuários</h1>
+        <hr>
+        <!-- Formulário para adicionar usuário -->
+        <h2>Adicionar Usuário</h2>
+        <form th:action="@{/usuarios}" method="post">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+            </div>
+            <!-- Adicione aqui os demais campos do usuário, como email, senha, etc. -->
+            <button type="submit" class="btn btn-primary">Adicionar</button>
+        </form>
+        <hr>
+        <!-- Tabela com a lista de usuários -->
+        <h2>Lista de Usuários</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <!-- Adicione aqui as demais colunas do usuário -->
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop para exibir os usuários -->
+                <tr th:each="usuario : ${usuarios}">
+                    <td th:text="${usuario.nome}"></td>
+                    <!-- Adicione aqui os botões para editar e excluir o usuário -->
+                    <td>
+                        <a th:href="@{'/usuarios/' + ${usuario.id} + '/edit'}" class="btn btn-primary btn-sm">Editar</a>
+                        <a th:href="@{'/usuarios/' + ${usuario.id} + '/delete'}" class="btn btn-danger btn-sm">Excluir</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

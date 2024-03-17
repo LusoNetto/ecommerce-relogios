@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>CRUD de Produtos</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container mt-5">
+		<h1>CRUD de Produtos</h1>
+		<hr>
+		<!-- Formulário para adicionar produto -->
+		<h2>Adicionar Produto</h2>
+		<form th:action="@{/produtos}" method="post">
+			<div class="form-group">
+				<label for="nome">Nome:</label>
+				<input type="text" class="form-control" id="nome" name="nome" required>
+			</div>
+			<div class="form-group">
+				<label for="preco">Preço:</label>
+				<input type="number" class="form-control" id="preco" name="preco" required>
+			</div>
+			<div class="form-group">
+				<label for="categoria">Categoria:</label>
+				<select class="form-control" id="categoria" name="categoria" required>
+					<option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nome}">
+					</option>
+				</select>
+			</div>
+			<button type="submit" class="btn btn-primary">Adicionar Produto</button>
+		</form>
+		<hr>
+		<!-- Tabela com a lista de produtos -->
+		<h2>Lista de Produtos</h2>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nome</th>
+					<th>Preço</th>
+					<th>Ações</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Loop para exibir os produtos -->
+				<tr th:each="produto : ${produtos}">
+					<td th:text="${produto.nome}"></td>
+					<td th:text="${produto.preco}"></td>
+					<td>
+						<!-- Botões para editar e excluir o produto -->
+						<a th:href="@{'/produtos/' + ${produto.id} + '/edit'}" class="btn btn-primary btn-sm">Editar</a>
+						<form th:action="@{'/produtos/' + ${produto.id} + '/delete'}" method="post">
+							<input type="hidden" name="_method" value="DELETE" />
+							<button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+						</form>
+
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
