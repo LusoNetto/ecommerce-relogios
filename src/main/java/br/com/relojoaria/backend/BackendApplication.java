@@ -7,7 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import br.com.relojoaria.backend.model.Produto;
+import br.com.relojoaria.backend.entity.Produto;
 import br.com.relojoaria.backend.repository.ProdutoRepository;
 
 @SpringBootApplication

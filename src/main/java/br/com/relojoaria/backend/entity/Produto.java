@@ -1,4 +1,4 @@
-package br.com.relojoaria.backend.model;
+package br.com.relojoaria.backend.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
